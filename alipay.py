@@ -5,16 +5,15 @@ import time
 import smtplib
 from email.mime.text import MIMEText
 orderList = {}
-SessionID = "" #  cookies中的ALIPAYJSESSIONID值
-key = " XXXXXX" # API 密匙
-api = "XXXXX" # API 地址
-mailto_list=['xxx@qq.com','xxxx@qq.com']           #收件人(列表)
-mail_host="smtp.qq.com"            #使用的邮箱的smtp服务器地址
-mail_user="xxx"                           # 发邮件QQ 帐号
-mail_pass="xxxx"                             # QQ密码
-mail_postfix="qq.com"                     #邮箱的后缀
+SessionID = ""
+key = " XXXXXX"
+api = "XXXXX"
+mailto_list=['xxx@qq.com','xxxx@qq.com']
+mail_host="smtp.qq.com"
+mail_user="xxx"
+mail_pass="xxxx"
 def send_mail(to_list,sub,content):
-    me="alipay"+"<"+mail_user+"@"+mail_postfix+">"
+    me="alipay"+"<"+mail_user+">"
     msg = MIMEText(content,_subtype='plain')
     msg['Subject'] = sub
     msg['From'] = me

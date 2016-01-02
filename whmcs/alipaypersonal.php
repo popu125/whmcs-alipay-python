@@ -6,7 +6,7 @@ function alipaypersonal_config() {
     $configarray = array(
         "FriendlyName"  => array(
             "Type"  => "System",
-            "Value" => "Alipay 支付宝收款接口"
+            "Value" => "支付宝收款接口·改"
         ),
         "seller_email"  => array(
             "FriendlyName" => "卖家支付宝帐户",
@@ -29,17 +29,17 @@ function alipaypersonal_form($params) {
     $systemurl = $params['systemurl'];
     $invoiceid = $params['invoiceid'];
     $amount    = $params['amount']; # Format: ##.##
+	$user      = $params['clientdetails']['firstname']
     $seller_email = $params['seller_email'];
-    $name      = 'whmcs_' . $invoiceid;
-    $memo      = "请勿修改付款说明里内容,否则无法完成订购";
-    $form_html = '<form accept-charset="GBK" id="alipaysubmit" name="alipaysubmit" action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST">
+    $name      = 'ijflstizi_' . $invoiceid;
+    $form_html = '<form accept-charset="GBK" id="alipaysubmit" name="alipaysubmit" action="/modules/gateways/callback/ialipay.php" method="POST">
 		<input type="hidden" name="optEmail" value="' . $seller_email. '"/>
 		<input type="hidden" name="payAmount" value="' . $amount . '"/>
 		<input type="hidden" name="title" value="' . $name . '"/>
-		<input type="hidden" name="memo" value="' . $memo . '"/>
+		<input type="hidden" name="user" value="' . $user . '"/>
 		<input type="hidden" value="submit" value="submit">
 	</form>';
-    $img       = $systemurl . "/modules/gateways/callback/pay-with-alipay.png"; //这个图片要先存放好.
+    $img       = $systemurl . "/modules/gateways/callback/pay-with-alipay.png";
     $code      = $form_html . '<a href="#" onclick="alipaypersonal_submit();"><img style="width: 152px;" src="' . $img . '" alt="点击使用支付宝支付"></a>';
     $script     = '<script language="javascript">
                     function alipaypersonal_submit(){

@@ -21,8 +21,8 @@ function verify_post($order_data, $key) {
     log_result(json_encode($order_data));
     log_result($key);
     if ($order_data['money'] > 0 && !empty($order_data['ddh']) && !empty($order_data['key']) && $order_data['key'] == $key) {
-        if (strpos($order_data['name'], 'whmcs_') === 0) {
-            $invoiceid = (int)substr($order_data['name'], strlen('whmcs_'));
+        if (strpos($order_data['name'], 'ijflstizi_') === 0) {
+            $invoiceid = (int)substr($order_data['name'], strlen('ijflstizi_'));
             if ($invoiceid > 0) {
                 $order_data['invoice_id'] = $invoiceid;
                 $order_data['status']     = 'success';
