@@ -29,26 +29,11 @@ function alipaypersonal_form($params) {
     $systemurl = $params['systemurl'];
     $invoiceid = $params['invoiceid'];
     $amount    = $params['amount']; # Format: ##.##
-	$user      = $params['clientdetails']['firstname']
+	$user      = $params['clientdetails']['firstname'];
     $seller_email = $params['seller_email'];
     $name      = 'ijflstizi_' . $invoiceid;
-    $form_html = '<form accept-charset="GBK" id="alipaysubmit" name="alipaysubmit" action="/modules/gateways/callback/ialipay.php" method="POST">
-		<input type="hidden" name="optEmail" value="' . $seller_email. '"/>
-		<input type="hidden" name="payAmount" value="' . $amount . '"/>
-		<input type="hidden" name="title" value="' . $name . '"/>
-		<input type="hidden" name="user" value="' . $user . '"/>
-		<input type="hidden" value="submit" value="submit">
-	</form>';
     $img       = $systemurl . "/modules/gateways/callback/pay-with-alipay.png";
-    $code      = $form_html . '<a href="#" onclick="alipaypersonal_submit();"><img style="width: 152px;" src="' . $img . '" alt="点击使用支付宝支付"></a>';
-    $script     = '<script language="javascript">
-                    function alipaypersonal_submit(){
-                        document.charset="GBK";
-                        document.getElementById(\'alipaysubmit\').submit();
-                    }
-                 </script>';
-
-     $code .= $script;
+    $code      = $form_html . '<a href="/modules/gateways/callback/ialipay.php?optEmail='.$seller_email.'&payAmount='.$amount.'&title='.$name.'&user='.$user.'"><img style="width: 152px;" src="' . $img . '" alt="点击使用支付宝支付"></a>';
     return $code;
 }
 
